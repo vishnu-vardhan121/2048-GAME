@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         generateTwo()
         generateTwo()
     }
+    
     createBoard()
 
     function generateTwo(){
@@ -150,6 +151,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         checkWin()
     }
+
+    var button = document.getElementsByTagName("button");
+
+    button[0].addEventListener("click", keyUp);
+    button[1].addEventListener("click", keyLeft);
+    button[2].addEventListener("click", keyRight);
+    button[3].addEventListener("click", keyDown);
 
     //Assign keys
     function control(event){
