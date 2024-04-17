@@ -137,6 +137,18 @@
         text-align: center;
         margin: auto;
     }
+    .buttons{
+       display: none;
+
+    }
+    
+    .button{
+        display: none;
+    }
+
+    button{
+        display: none;
+    }
     
     
 }
