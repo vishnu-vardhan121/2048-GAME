@@ -1,35 +1,27 @@
-<html>
-    <head>
-        <link rel="stylesheet" href="./style.css">
-        <script src ="./script.js"></script>
-        <title>2048 Game</title>
-    </head>
-    <body>
-        <div class = "header">2048 Game</div>
-
-        <div class = "instructions">Instructions: Use arrow key to play. Refresh the page to restart.</div>
-
-        <div class = "scoreContainer">
-            <div class="scoreTitle">score</div>
-            <span id="score">0</span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+    <title>2048 Game</title>
+</head>
+<body>
+    <div class="header">2048 Game</div>
+    <div class="instructions">Instructions: Use arrow keys to play. Refresh the page to restart.</div>
+    <div class="scoreContainer">
+        <div class="scoreTitle">Score</div>
+        <span id="score">0</span>
+    </div>
+    <div class="grid"></div>
+    <div class="buttoncon">
+        <div class="buttons">
+            <div class="button"><button>&#x25B2;</button></div>
+            <div class="button"><button>&#x25C0;</button></div>
+            <div class="button"><button>&#x25B6;</button></div>
+            <div class="button"><button>&#x25BC;</button></div>
         </div>
-
-        <div class ="grid"></div>
-        
-        <div class="buttoncon">
-            <div class="buttons">
-                <div class="button"></div>
-                <div class="button"><button>&#x25B2;</button></div>
-                <div class="button"></div>
-                <div class="button"><button>&#x25C0;</button></div>
-                <div class="button"></div>
-                <div class="button"><button>&#x25b6;</button></div>
-                <div class="button"></div>
-                <div class="button"><button>&#x25BC;</button></div>
-                <div class="button"></div>
-    
-            </div>
-        </div>
-        
-    </body>
+    </div>
+</body>
 </html>

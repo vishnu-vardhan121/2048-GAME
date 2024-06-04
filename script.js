@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function createBoard() {
         for (let i=0; i< 16; i++){
-            square = document.createElement('div')
+            let square = document.createElement('div')
+            square.classList.add('square')
             square.innerHTML = 0
             gridDisplay.appendChild(square)
             squares.push(square)
@@ -22,32 +23,28 @@ document.addEventListener('DOMContentLoaded', () => {
         let random = Math.floor(Math.random() * squares.length)
         if (squares[random].innerHTML == 0){
             squares[random].innerHTML = 2
+            squares[random].classList.add('new')
             checkLose()
         }
         else generateTwo()
     }
 
-    //swipe right
     function moveRight(){
-        for (let i = 0; i<16; i++){
-            if(i%4 == 0 ){ 
-                let totalOne = parseInt(squares[i].innerHTML)
-                let totalTwo = parseInt(squares[i+1].innerHTML)
-                let totalThree = parseInt(squares[i+2].innerHTML)
-                let totalFour = parseInt(squares[i+3].innerHTML)
-                let row = [totalOne,totalTwo,totalThree,totalFour]
+        for (let i = 0; i < 16; i++){
+            if(i % 4 === 0 ){ 
+                let row = [
+                    parseInt(squares[i].innerHTML),
+                    parseInt(squares[i+1].innerHTML),
+                    parseInt(squares[i+2].innerHTML),
+                    parseInt(squares[i+3].innerHTML)
+                ]
 
-                //console.log(row)
-
-                let filteredRow = row.filter(x => x != 0)
-                //console.log(filteredRow)
+                let filteredRow = row.filter(num => num)
                 let missing = 4 - filteredRow.length
-                let zeros = Array(missing).fill(0)
-                //console.log(zeros)
-                let newRow = zeros.concat(filteredRow)
-                //console.log(newRow)
+                console.log(missing);
+                let newRow = Array(missing).fill(0).concat(filteredRow)
+                console.log(newRow);
 
-                //insert new row into the squares
                 squares[i].innerHTML = newRow[0]
                 squares[i+1].innerHTML = newRow[1]
                 squares[i+2].innerHTML = newRow[2]
@@ -55,25 +52,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
- 
-    //swipe left
+
     function moveLeft(){
-        for (let i = 0; i<16; i++){
-            if(i%4 == 0 ){ //first column
-                let totalOne = parseInt(squares[i].innerHTML)
-                let totalTwo = parseInt(squares[i+1].innerHTML)
-                let totalThree = parseInt(squares[i+2].innerHTML)
-                let totalFour = parseInt(squares[i+3].innerHTML)
-                let row = [totalOne,totalTwo,totalThree,totalFour]
+        for (let i = 0; i < 16; i++){
+            if(i % 4 === 0 ){ 
+                let row = [
+                    parseInt(squares[i].innerHTML),
+                    parseInt(squares[i+1].innerHTML),
+                    parseInt(squares[i+2].innerHTML),
+                    parseInt(squares[i+3].innerHTML)
+                ]
 
-
-                let filteredRow = row.filter(x => x != 0)
+                let filteredRow = row.filter(num => num)
                 let missing = 4 - filteredRow.length
-                let zeros = Array(missing).fill(0)
-                let newRow = filteredRow.concat(zeros)
-                
+                let newRow = filteredRow.concat(Array(missing).fill(0))
 
-                //insert new row into the squares
                 squares[i].innerHTML = newRow[0]
                 squares[i+1].innerHTML = newRow[1]
                 squares[i+2].innerHTML = newRow[2]
@@ -83,83 +76,78 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function sumRow(){
-        for (let i=0; i <15; i++){ //end before index 15 because is has no "right neighbour"
-            if(squares[i].innerHTML == squares[i+1].innerHTML){
-                let combineNum = parseInt(squares[i].innerHTML) + parseInt(squares[i+1].innerHTML)
-                squares[i].innerHTML = combineNum
-                squares[i+1].innerHTML = 0
-                score += combineNum
+        for (let i = 0; i < 15; i++){ 
+            if(squares[i].innerHTML == squares[i + 1].innerHTML && squares[i].innerHTML != 0){
+                let combinedTotal = parseInt(squares[i].innerHTML) + parseInt(squares[i + 1].innerHTML)
+                squares[i].innerHTML = combinedTotal
+                squares[i + 1].innerHTML = 0
+                score += combinedTotal
                 scoreDisplay.innerHTML = score
+                squares[i].classList.add('combine')
             }
         }
     }
 
-    checkWin()
-
     function moveDown(){
-        //get column
-        for(let i=0; i<4; i++){
-            let totalOne = parseInt(squares[i].innerHTML)
-            let totalTwo = parseInt(squares[i+4].innerHTML)
-            let totalThree = parseInt(squares[i+4*2].innerHTML)
-            let totalFour = parseInt(squares[i+4*3].innerHTML)
-            let column = [totalOne,totalTwo,totalThree,totalFour]
+        for(let i = 0; i < 4; i++){
+            let column = [
+                parseInt(squares[i].innerHTML),
+                parseInt(squares[i + 4].innerHTML),
+                parseInt(squares[i + 8].innerHTML),
+                parseInt(squares[i + 12].innerHTML)
+            ]
 
-            let filteredColumn = column.filter(x => x!=0 )
+            let filteredColumn = column.filter(num => num)
             let missing = 4 - filteredColumn.length
-            let zeros = Array(missing).fill(0)
-            let newColumn = zeros.concat(filteredColumn)
+            let newColumn = Array(missing).fill(0).concat(filteredColumn)
 
             squares[i].innerHTML = newColumn[0]
-            squares[i+4].innerHTML = newColumn[1]
-            squares[i+4*2].innerHTML = newColumn[2]
-            squares[i+4*3].innerHTML = newColumn[3]
+            squares[i + 4].innerHTML = newColumn[1]
+            squares[i + 8].innerHTML = newColumn[2]
+            squares[i + 12].innerHTML = newColumn[3]
         }
     }
 
     function moveUp(){
-        //get column
-        for(let i=0; i<4; i++){
-            let totalOne = parseInt(squares[i].innerHTML)
-            let totalTwo = parseInt(squares[i+4].innerHTML)
-            let totalThree = parseInt(squares[i+4*2].innerHTML)
-            let totalFour = parseInt(squares[i+4*3].innerHTML)
-            let column = [totalOne,totalTwo,totalThree,totalFour]
+        for(let i = 0; i < 4; i++){
+            let column = [
+                parseInt(squares[i].innerHTML),
+                parseInt(squares[i + 4].innerHTML),
+                parseInt(squares[i + 8].innerHTML),
+                parseInt(squares[i + 12].innerHTML)
+            ]
 
-            let filteredColumn = column.filter(x => x!=0 )
+            let filteredColumn = column.filter(num => num)
             let missing = 4 - filteredColumn.length
-            let zeros = Array(missing).fill(0)
-            let newColumn = filteredColumn.concat(zeros)
+            let newColumn = filteredColumn.concat(Array(missing).fill(0))
 
             squares[i].innerHTML = newColumn[0]
-            squares[i+4].innerHTML = newColumn[1]
-            squares[i+4*2].innerHTML = newColumn[2]
-            squares[i+4*3].innerHTML = newColumn[3]
+            squares[i + 4].innerHTML = newColumn[1]
+            squares[i + 8].innerHTML = newColumn[2]
+            squares[i + 12].innerHTML = newColumn[3]
         }
     }
 
     function sumColumn(){
-        for (let i=0; i <12; i++){ //end before index 12 because is has no "below neighbour"
-            if(squares[i].innerHTML == squares[i+4].innerHTML){
-                let combineNum = parseInt(squares[i].innerHTML) + parseInt(squares[i+4].innerHTML)
-                squares[i].innerHTML = combineNum
-                squares[i+4].innerHTML = 0
-                score += combineNum
+        for (let i = 0; i < 12; i++){ 
+            if(squares[i].innerHTML == squares[i + 4].innerHTML && squares[i].innerHTML != 0){
+                let combinedTotal = parseInt(squares[i].innerHTML) + parseInt(squares[i + 4].innerHTML)
+                squares[i].innerHTML = combinedTotal
+                squares[i + 4].innerHTML = 0
+                score += combinedTotal
                 scoreDisplay.innerHTML = score
+                squares[i].classList.add('combine')
             }
         }
-
-        checkWin()
     }
 
-    var button = document.getElementsByTagName("button");
+    var buttons = document.querySelectorAll('.button button');
 
-    button[0].addEventListener("click", keyUp);
-    button[1].addEventListener("click", keyLeft);
-    button[2].addEventListener("click", keyRight);
-    button[3].addEventListener("click", keyDown);
+    buttons[0].addEventListener("click", keyUp);
+    buttons[1].addEventListener("click", keyLeft);
+    buttons[2].addEventListener("click", keyRight);
+    buttons[3].addEventListener("click", keyDown);
 
-    //Assign keys
     function control(event){
         if(event.keyCode === 39){
             keyRight()
@@ -170,15 +158,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }else if (event.keyCode === 40){
             keyDown()
         }
-            
     }
-    document.addEventListener('keyup',control)
+    document.addEventListener('keyup', control)
 
     function keyRight(){
-        moveRight() //move all to right
-        sumRow() //combine neighbour if same number
-        moveRight() //move all to right again
-        generateTwo() //generate new numbers
+        moveRight()
+        sumRow()
+        moveRight()
+        generateTwo()
+        checkWin()
     }
 
     function keyLeft(){
@@ -186,6 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sumRow()
         moveLeft()
         generateTwo()
+        checkWin()
     }
 
     function keyDown(){
@@ -193,6 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sumColumn()
         moveDown()
         generateTwo()
+        checkWin()
     }
 
     function keyUp(){
@@ -200,10 +190,11 @@ document.addEventListener('DOMContentLoaded', () => {
         sumColumn()
         moveUp()
         generateTwo()
+        checkWin()
     }
 
     function checkWin(){
-        for(let i=0; i < 16; i++){
+        for(let i = 0; i < 16; i++){
             if (squares[i].innerHTML == 2048){
                 alert('Congratulations!! Refresh the page to play again.')
                 document.removeEventListener('keyup', control)
@@ -213,12 +204,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function checkLose(){
         let numZeros = 0
-        for(let i = 0; i<16; i++){
-            if(squares[i].innerHTML==0){
+        for(let i = 0; i < 16; i++){
+            if(squares[i].innerHTML == 0){
                 numZeros++
             }
         }
-        if(numZeros===0){
+        if(numZeros === 0){
             alert('Game Over!! Refresh the page to play again.')
             document.removeEventListener('keyup', control)
         }

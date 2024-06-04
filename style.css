@@ -1,156 +1,144 @@
-@media screen and (max-width: 768px) {
-    /* Mobile screen */
-    body{
-        background-color: rgb(250, 242, 242);
+body {
+    background-image: url("./123.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.header {
+    font-size: 60px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 3px 2px 1px rgb(75, 129, 148),2px 3px 1px rgb(86, 54, 42);
+}
+
+.instructions {
+    text-align: center;
+    margin: 10px 0;
+    color: #fffdfdc2;
+}
+
+.scoreContainer {
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px;
+    color: #ffffff;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    height: 420px;
+    width: 420px;
+    background-color: #ffffff;
+    margin-top: 20px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.grid .square {
+    border: solid #ccc 2px;
+    width: 100px;
+    height: 100px;
+    background-color: #f9f9f9;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 100px;
+    font-weight: bold;
+    font-size: 52px;
+    position: relative;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.square.combine {
+    animation: combine 0.3s ease-in-out;
+}
+
+.square.new {
+    animation: newTile 0.3s ease-in-out;
+}
+
+@keyframes combine {
+    0% {
+        transform: scale(1);
+        background-color: #ffdd57;
+        color: #fff;
     }
-    
+    50% {
+        transform: scale(1.2);
+        background-color: #ffdd57;
+        color: #fff;
+    }
+    100% {
+        transform: scale(1);
+        background-color: #eee4da;
+        color: #776e65;
+    }
+}
+
+@keyframes newTile {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.buttoncon {
+    margin-top: 20px;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100px;
+    gap: 10px;
+    justify-content: center;
+}
+
+.button {
+    width: 35px;
+    height: 35px;
+}
+
+button {
+    background-color: #333;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #ff5722;
+}
+
+@media screen and (max-width: 768px) {
     .grid {
-        display:flex;
-        flex-wrap: wrap;
         height: 259px;
         width: 259px;
-        background-color: rgb(0, 0, 0);
-        margin: auto;
-        justify-content: center;
-        align-content: center;
     }
     
-    .grid div{
-        border: solid rgb(68, 65, 65) 2px;
+    .grid .square {
         width: 60px;
         height: 60px;
-        background-color: rgb(167, 154, 154);
-        text-align: center;
-        vertical-align: middle;
         line-height: 60px;
-        font-weight: bold;
         font-size: 31.2px;
     }
-    
-    .scoreContainer {
-        margin-top: 60px;
-        font-weight: bold;
-        text-align: center;
-        font-size: 30px;
-    }
-    
-    .header {
-        font-size: 60px;
-        margin-top: 50px;
-        text-align: center;
-        font-weight: bold;
-    }
-    
-    .instructions{
-        text-align: center;
-        margin: auto;
-    }
-    
-    #result{
-        text-align: center;
-        margin: auto;
-    }
-
-
-    .buttons{
-        display: flex;
-        width: 95px;
-        height: 65px;
-        flex-wrap: wrap;
-        position: absolute;
-        left: 50%;
-        bottom: 50px;
-        transform: translate(-50%, -50%);
-
-    }
-    
-    .button{
-        width: 30px;
-        height: 30px;
-    }
-
-    button{
-        background-color: rgb(141, 136, 201);
-        width: 100%;
-        height: 100%;
-        font-size: 13px;
-        text-align: center;
-    }
-    button:hover{
-        background-color: rgb(17, 28, 155);
-        color: white;
-        font-size: 15px;
-    }
-    
-    
 }
-
-@media screen and (min-width: 769px) {
-    /* Laptop/desktop screen */
-    body{
-        background-color: rgb(250, 242, 242);
-    }
-    
-    .grid {
-        display:flex;
-        flex-wrap: wrap;
-        height: 420px;
-        width: 420px;
-        background-color: rgb(0, 0, 0);
-        margin: auto;
-        justify-content: center;
-        align-content: center;
-    }
-    
-    .grid div{
-        border: solid rgb(68, 65, 65) 2px;
-        width: 100px;
-        height: 100px;
-        background-color: rgb(167, 154, 154);
-        text-align: center;
-        vertical-align: middle;
-        line-height: 100px;
-        font-weight: bold;
-        font-size: 52px;
-    }
-    
-    .scoreContainer {
-        margin-top: 60px;
-        font-weight: bold;
-        text-align: center;
-        font-size: 30px;
-    }
-    
-    .header {
-        font-size: 60px;
-        margin-top: 50px;
-        text-align: center;
-        font-weight: bold;
-    }
-    
-    .instructions{
-        text-align: center;
-        margin: auto;
-    }
-    
-    #result{
-        text-align: center;
-        margin: auto;
-    }
-    .buttons{
-       display: none;
-
-    }
-    
-    .button{
-        display: none;
-    }
-
-    button{
-        display: none;
-    }
-    
-    
-}
-
-
